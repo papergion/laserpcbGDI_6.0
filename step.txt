@@ -1,0 +1,76 @@
+per ogni linea
+- se il primo carattere è * terminare il blocco corrente ed eseguire
+- se il primo carattere è % elaborazione parametro fino al successivo % (vedi elaborazione parametri)
+- se il primo carattere è X o Y leggere e memorizzare la coordinata finchè ci sono numeri
+- se il primo carattere è I o J leggere e calcolare la coordinata (incrementale) finchè ci sono numeri
+- se il primo carattere è D leggere e trattare il comando Dxx
+- se il primo carattere è M leggere e trattare il comando Mxx
+- se il primo carattere è G leggere e trattare il comando Gxx
+
+
+
+
+elaborazione parametri
+leggere il codice (2 caratteri)
+- FS   format specification
+       FSabXnnYmm
+       a:  L=leading zero omitted
+       b:  A=coordinate assolute   R=relative
+       nn: X coordinate formats   23=2.3 
+       mm: Y coordinate formats   23=2.3 
+
+- LPx  polarity   D=dark   C=clear
+
+- SR step and repeat
+
+
+- MO 
+     i successivi 2 caratteri indicano l'unita di misura  MI  oppure  IN
+
+
+- AD (definizione apertura)
+     i successivi 3 indicano il codice apertura (es. D11)
+     il successivo il tipo C (cerchio)   R (rettangolo)  O(ovale)  P(poligono)
+     il successivo è una virgola
+     seguono i valori a seconda del tipo
+             se cerchio il valore del raggio - es: 0.010 (10 mils)
+             se rettangolo la prima dimensione, poi una X e la seconda dimensione - es: 0.080X0.065
+
+- AM (definizione macro)
+
+
+
+comandi Dxx
+
+- D01 linear interpolation (draw)
+
+- D02 move current point
+
+- D03 flash (draw current aperture at current point)
+
+
+- D10-D99   set aperture previously defined
+
+
+
+comandi Gxx
+
+G01 linear interpolation
+G02 clockwise circular interpolation
+G03 counterclockwise circular interpolation
+G04 commento  *
+G36 start a region
+G37 create the region
+
+G74 single quadrant mode
+G75 multi quadrant mode
+
+
+    pctMain.ForeColor = RGB(0, 255, 0)
+    pctMain.Line (X, 0)-(X, Ymax)
+
+    Picture1.DrawWidth = 1
+    Picture1.Line (x, y)-(a, b), vbRed
+
+
+M02  END OF FILE
